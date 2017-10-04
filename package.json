@@ -1,0 +1,13 @@
+{
+  "name": "vuex-test",
+  "version": "0.1.0",
+  "description": "Vuex Testing Tools",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/mcmillion/vuex-test",
+    "type": "git"
+  },
+  "author": "Matthew McMillion <matthew@mcmillion.io>",
+  "license": "MIT",
+  "private": false
+}
