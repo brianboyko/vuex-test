@@ -11,6 +11,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "clean": "rimraf dist",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "lint": "eslint src test"
   },
