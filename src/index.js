@@ -1,6 +1,6 @@
 function test() {
   const message = 'Test message!';
-  console.log(message);
+  return message;
 }
 
-export { test as default };
+export { test };

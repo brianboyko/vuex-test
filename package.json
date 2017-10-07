@@ -11,9 +11,11 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
+    "test:watch": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive --watch",
+    "lint": "eslint src test",
     "clean": "rimraf dist",
-    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "lint": "eslint src test"
+    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
