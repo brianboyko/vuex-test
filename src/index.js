@@ -1,4 +1,4 @@
-import VuexTestError, * as errors from './errors';
+import VuexTestError, * as error from './error';
 import { isEqual } from 'lodash';
 
 function testAsyncAction(options) {
@@ -9,23 +9,23 @@ function testAsyncAction(options) {
   let commitCount = 0;
 
   if (!done) {
-    throw new Error(errors.NO_DONE_CALLBACK);
+    throw new Error(error.NO_DONE_CALLBACK);
   }
   if (totalExpectedCount === 0) {
-    throw new VuexTestError(done, errors.NO_EXPECTATIONS);
+    throw new VuexTestError(done, error.NO_EXPECTATIONS);
   }
 
   const commit = (calledType, calledPayload) => {
     const { type: expectedType, payload: expectedPayload } = commits[commitCount];
 
     if (calledType !== expectedType) {
-      throw new VuexTestError(done, errors.INVALID_COMMIT_CALLED);
+      throw new VuexTestError(done, error.INVALID_COMMIT_CALLED);
     }
     if (!expectedPayload && calledPayload) {
-      throw new VuexTestError(done, errors.COMMIT_PAYLOAD_NOT_EXPECTED);
+      throw new VuexTestError(done, error.COMMIT_PAYLOAD_NOT_EXPECTED);
     }
     if (expectedPayload && !isEqual(calledPayload, expectedPayload)) {
-      throw new VuexTestError(done, errors.INVALID_COMMIT_PAYLOAD);
+      throw new VuexTestError(done, error.INVALID_COMMIT_PAYLOAD);
     }
 
     commitCount += 1;

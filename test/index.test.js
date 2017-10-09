@@ -1,5 +1,5 @@
 import { testAsyncAction } from '../src/';
-import * as errors from '../src/errors';
+import * as error from '../src/error';
 
 function asyncAction(fn) {
   return (args) => { setTimeout(fn(args), 100); };
@@ -19,7 +19,7 @@ describe('testAsyncAction', () => {
     it('throws NO_DONE_CALLBACK', () => {
       expect(() => {
         testAsyncAction({ action, expected });
-      }).toThrowError(errors.NO_DONE_CALLBACK);
+      }).toThrowError(error.NO_DONE_CALLBACK);
     });
   });
 
@@ -32,7 +32,7 @@ describe('testAsyncAction', () => {
     it('throws NO_EXPECTATIONS', done => {
       expect(() => {
         testAsyncAction({ action, expected, done });
-      }).toThrowError(errors.NO_EXPECTATIONS);
+      }).toThrowError(error.NO_EXPECTATIONS);
     });
   });
 
@@ -63,7 +63,7 @@ describe('testAsyncAction', () => {
       it('throws COMMIT_PAYLOAD_NOT_EXPECTED', done => {
         expect(() => {
           testAsyncAction({ action, expected, done });
-        }).toThrowError(errors.COMMIT_PAYLOAD_NOT_EXPECTED);
+        }).toThrowError(error.COMMIT_PAYLOAD_NOT_EXPECTED);
       });
     });
 
@@ -75,7 +75,7 @@ describe('testAsyncAction', () => {
       it('throws INVALID_COMMIT_CALLED', done => {
         expect(() => {
           testAsyncAction({ action, expected, done });
-        }).toThrowError(errors.INVALID_COMMIT_CALLED);
+        }).toThrowError(error.INVALID_COMMIT_CALLED);
       });
     });
   });
@@ -107,7 +107,7 @@ describe('testAsyncAction', () => {
       it('throws INVALID_COMMIT_PAYLOAD', done => {
         expect(() => {
           testAsyncAction({ action, expected, done });
-        }).toThrowError(errors.INVALID_COMMIT_PAYLOAD);
+        }).toThrowError(error.INVALID_COMMIT_PAYLOAD);
       });
     });
 
@@ -119,7 +119,7 @@ describe('testAsyncAction', () => {
       it('throws INVALID_COMMIT_CALLED', done => {
         expect(() => {
           testAsyncAction({ action, expected, done });
-        }).toThrowError(errors.INVALID_COMMIT_CALLED);
+        }).toThrowError(error.INVALID_COMMIT_CALLED);
       });
     });
   });
@@ -156,7 +156,7 @@ describe('testAsyncAction', () => {
       it('throws INVALID_COMMIT_CALLED', done => {
         expect(() => {
           testAsyncAction({ action, expected, done });
-        }).toThrowError(errors.INVALID_COMMIT_CALLED);
+        }).toThrowError(error.INVALID_COMMIT_CALLED);
       });
     });
   });
