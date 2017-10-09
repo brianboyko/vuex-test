@@ -1,9 +1,6 @@
 import { testAsyncAction } from '../src/';
+import { asyncAction } from './support';
 import * as error from '../src/error';
-
-function asyncAction(fn) {
-  return (args) => { setTimeout(fn(args), 100); };
-}
 
 describe('testAsyncAction', () => {
   describe('when done is not provided', () => {

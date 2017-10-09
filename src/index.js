@@ -9,7 +9,7 @@ function testAsyncAction(options) {
   let commitCount = 0;
 
   if (!done) {
-    throw new Error(error.NO_DONE_CALLBACK);
+    throw new VuexTestError(done, error.NO_DONE_CALLBACK);
   }
   if (totalExpectedCount === 0) {
     throw new VuexTestError(done, error.NO_EXPECTATIONS);

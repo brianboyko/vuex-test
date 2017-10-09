@@ -1,7 +1,7 @@
 export default class VuexTestError extends Error {
   constructor(done, ...args) {
     super(...args);
-    done();
+    if (done) done();
   }
 };
 
