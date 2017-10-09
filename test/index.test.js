@@ -157,4 +157,129 @@ describe('testAsyncAction', () => {
       });
     });
   });
+
+  describe('when one dispatch with no payload is expected', () => {
+    const expected = {
+      dispatches: [
+        { type: 'test' },
+      ],
+    };
+
+    describe('when action calls one dispatch with no payload', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('test');
+      });
+
+      it('does not throw', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).not.toThrow();
+      });
+    });
+
+    describe('when action calls one dispatch with payload', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('test', { arg: 'arg' });
+      });
+
+      it('throws DISPATCH_PAYLOAD_NOT_EXPECTED', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.DISPATCH_PAYLOAD_NOT_EXPECTED);
+      });
+    });
+
+    describe('when action calls wrong dispatch', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('bad');
+      });
+
+      it('throws INVALID_DISPATCH_CALLED', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.INVALID_DISPATCH_CALLED);
+      });
+    });
+  });
+
+  describe('when one dispatch with payload is expected', () => {
+    const expected = {
+      dispatches: [
+        { type: 'test', payload: { arg: 'arg' } },
+      ],
+    };
+
+    describe('when action calls one dispatch with payload', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('test', { arg: 'arg' });
+      });
+
+      it('does not throw', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).not.toThrow();
+      });
+    });
+
+    describe('when action calls one dispatch with wrong payload', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('test', { arg: 'bad' });
+      });
+
+      it('throws INVALID_DISPATCH_PAYLOAD', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.INVALID_DISPATCH_PAYLOAD);
+      });
+    });
+
+    describe('when action calls wrong dispatch', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('bad', { arg: 'arg' });
+      });
+
+      it('throws INVALID_DISPATCH_CALLED', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.INVALID_DISPATCH_CALLED);
+      });
+    });
+  });
+
+  describe('when multiple dispatches are expected', () => {
+    const expected = {
+      dispatches: [
+        { type: 'dispatch1' },
+        { type: 'dispatch2', payload: { arg: 'arg' } },
+        { type: 'dispatch3', payload: 3 },
+      ],
+    };
+
+    describe('when action calls multiple dispatches', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('dispatch1');
+        dispatch('dispatch2', { arg: 'arg' });
+        dispatch('dispatch3', 3);
+      });
+
+      it('does not throw', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).not.toThrow();
+      });
+    });
+
+    describe('when action calls unexpected dispatch', () => {
+      const action = asyncAction(({ dispatch }) => {
+        dispatch('dispatch1');
+        dispatch('dispatch4', { arg: 'arg' });
+      });
+
+      it('throws INVALID_DISPATCH_CALLED', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.INVALID_DISPATCH_CALLED);
+      });
+    });
+  });
 });
