@@ -40,5 +40,8 @@
     "istanbul": "^1.0.0-alpha",
     "jest": "^21.2.1",
     "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
