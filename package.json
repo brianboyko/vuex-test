@@ -16,7 +16,7 @@
   "private": false,
   "scripts": {
     "test": "cross-env BABEL_ENV=commonjs jest --coverage",
-    "test:watch": "cross-env BABEL_ENV=commonjs jest --coverage --watch",
+    "test:watch": "cross-env BABEL_ENV=commonjs jest --watch",
     "lint": "eslint src test",
     "clean": "rimraf dist",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir dist",
