@@ -282,4 +282,54 @@ describe('testAsyncAction', () => {
       });
     });
   });
+
+  describe('when one commit and one dispatch are expected', () => {
+    const expected = {
+      commits: [
+        { type: 'commit' },
+      ],
+      dispatches: [
+        { type: 'dispatch' },
+      ],
+    };
+
+    describe('when action calls one commit and one dispatch', () => {
+      const action = asyncAction(({ commit, dispatch }) => {
+        commit('commit');
+        dispatch('dispatch');
+      });
+
+      it('does not throw', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).not.toThrow();
+      });
+    });
+
+    describe('when action calls unexpected action', () => {
+      const action = asyncAction(({ commit, dispatch }) => {
+        commit('bad');
+        dispatch('dispatch');
+      });
+
+      it('throws INVALID_COMMIT_CALLED', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.INVALID_COMMIT_CALLED);
+      });
+    });
+
+    describe('when action calls unexpected dispatch', () => {
+      const action = asyncAction(({ commit, dispatch }) => {
+        commit('commit');
+        dispatch('bad');
+      });
+
+      it('throws INVALID_DISPATCH_CALLED', done => {
+        expect(() => {
+          testAsyncAction({ action, expected, done });
+        }).toThrowError(error.INVALID_DISPATCH_CALLED);
+      });
+    });
+  });
 });
