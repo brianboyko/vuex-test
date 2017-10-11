@@ -3,7 +3,7 @@ import VuexTestError, * as error from './error';
 
 export function testAsyncAction(options) {
   const { action, payload, mocks = {}, expected = {}, done } = options;
-  const { state = {} } = mocks;
+  const { state = {}, getters = {} } = mocks;
   const { commits = [], dispatches = [] } = expected;
   const totalExpectedCount = commits.length + dispatches.length;
   let commitCount = 0;
@@ -56,5 +56,5 @@ export function testAsyncAction(options) {
     }
   };
 
-  action({ state, commit, dispatch }, payload);
+  action({ state, getters, commit, dispatch }, payload);
 }
