@@ -3,7 +3,7 @@ export default class VuexTestError extends Error {
     super(...args);
     if (done) done();
   }
-};
+}
 
 export const NO_EXPECTATIONS = 'No expected commits or dispatches provided.';
 export const NO_DONE_CALLBACK = 'No done callback provided.';
