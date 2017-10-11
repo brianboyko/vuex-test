@@ -332,4 +332,29 @@ describe('testAsyncAction', () => {
       });
     });
   });
+
+  describe('when state mock is passed', () => {
+    const mocks = {
+      state: {
+        test: 'test',
+      },
+    };
+    const expected = {
+      commits: [
+        { type: 'commit', payload: 'test' },
+      ],
+    };
+
+    describe('when action references state', () => {
+      const action = asyncAction(({ state, commit }) => {
+        commit('commit', state.test);
+      });
+
+      it('has access to the mocked state', done => {
+        expect(() => {
+          testAsyncAction({ action, mocks, expected, done })
+        }).not.toThrow();
+      });
+    });
+  });
 });

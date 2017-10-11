@@ -2,7 +2,8 @@ import { isEqual } from 'lodash';
 import VuexTestError, * as error from './error';
 
 export function testAsyncAction(options) {
-  const { action, payload, done, expected = {} } = options;
+  const { action, payload, mocks = {}, expected = {}, done } = options;
+  const { state = {} } = mocks;
   const { commits = [], dispatches = [] } = expected;
   const totalExpectedCount = commits.length + dispatches.length;
   let commitCount = 0;
@@ -55,5 +56,5 @@ export function testAsyncAction(options) {
     }
   };
 
-  action({ commit, dispatch }, payload);
+  action({ state, commit, dispatch }, payload);
 }
