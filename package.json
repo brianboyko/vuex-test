@@ -39,6 +39,7 @@
     "eslint-plugin-import": "^2.7.0",
     "istanbul": "^1.0.0-alpha",
     "jest": "^21.2.1",
+    "jest-cli": "^21.2.1",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
