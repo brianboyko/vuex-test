@@ -370,7 +370,7 @@ describe('testAsyncAction', () => {
       ],
     };
 
-    describe('when action references state', () => {
+    describe('when action references getters', () => {
       const action = asyncAction(({ getters, commit }) => {
         commit('commit', getters.test());
       });
@@ -378,6 +378,27 @@ describe('testAsyncAction', () => {
       it('has access to the mocked getters', done => {
         expect(() => {
           testAsyncAction({ action, mocks, expected, done })
+        }).not.toThrow();
+      });
+    });
+  });
+
+  describe('when payload is passed', () => {
+    const payload = { test: 'test' };
+    const expected = {
+      commits: [
+        { type: 'commit', payload: 'test' },
+      ],
+    };
+
+    describe('when action references payload', () => {
+      const action = asyncAction(({ commit }) => {
+        commit('commit', payload.test);
+      });
+
+      it('has access to the payload', done => {
+        expect(() => {
+          testAsyncAction({ action, payload, expected, done })
         }).not.toThrow();
       });
     });
