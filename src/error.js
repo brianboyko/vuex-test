@@ -5,6 +5,7 @@ export default class VuexTestError extends Error {
   }
 }
 
+export const NO_ACTION = 'No action provided.';
 export const NO_EXPECTATIONS = 'No expected commits or dispatches provided.';
 export const NO_DONE_CALLBACK = 'No done callback provided.';
 export const COMMIT_PAYLOAD_NOT_EXPECTED = 'Commit was called with payload, but no payload was expected.';

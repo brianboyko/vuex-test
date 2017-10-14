@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash';
 import VuexTestError, * as error from './error';
 
-export function testAsyncAction(options) {
+export function testAsyncAction(options = {}) {
   const { action, payload, mocks = {}, expected = {}, done } = options;
   const { state = {}, getters = {} } = mocks;
   const { commits = [], dispatches = [] } = expected;
@@ -9,6 +9,9 @@ export function testAsyncAction(options) {
   let commitCount = 0;
   let dispatchCount = 0;
 
+  if (!action) {
+    throw new VuexTestError(done, error.NO_ACTION);
+  }
   if (!done) {
     throw new VuexTestError(done, error.NO_DONE_CALLBACK);
   }
