@@ -33,7 +33,7 @@ describe('testAsyncAction', () => {
       commit('test');
     });
 
-    it('throws NO_EXPECTATIONS', done => {
+    it('throws NO_EXPECTATIONS', (done) => {
       expect(() => {
         testAsyncAction({ action, expected, done });
       }).toThrowError(error.NO_EXPECTATIONS);
@@ -52,7 +52,7 @@ describe('testAsyncAction', () => {
         commit('test');
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -64,7 +64,7 @@ describe('testAsyncAction', () => {
         commit('test', { arg: 'arg' });
       });
 
-      it('throws COMMIT_PAYLOAD_NOT_EXPECTED', done => {
+      it('throws COMMIT_PAYLOAD_NOT_EXPECTED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.COMMIT_PAYLOAD_NOT_EXPECTED);
@@ -76,7 +76,7 @@ describe('testAsyncAction', () => {
         commit('bad');
       });
 
-      it('throws INVALID_COMMIT_CALLED', done => {
+      it('throws INVALID_COMMIT_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_COMMIT_CALLED);
@@ -96,7 +96,7 @@ describe('testAsyncAction', () => {
         commit('test', { arg: 'arg' });
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -108,7 +108,7 @@ describe('testAsyncAction', () => {
         commit('test', { arg: 'bad' });
       });
 
-      it('throws INVALID_COMMIT_PAYLOAD', done => {
+      it('throws INVALID_COMMIT_PAYLOAD', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_COMMIT_PAYLOAD);
@@ -120,7 +120,7 @@ describe('testAsyncAction', () => {
         commit('bad', { arg: 'arg' });
       });
 
-      it('throws INVALID_COMMIT_CALLED', done => {
+      it('throws INVALID_COMMIT_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_COMMIT_CALLED);
@@ -144,7 +144,7 @@ describe('testAsyncAction', () => {
         commit('commit3', 3);
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -157,7 +157,7 @@ describe('testAsyncAction', () => {
         commit('commit4', { arg: 'arg' });
       });
 
-      it('throws INVALID_COMMIT_CALLED', done => {
+      it('throws INVALID_COMMIT_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_COMMIT_CALLED);
@@ -177,7 +177,7 @@ describe('testAsyncAction', () => {
         dispatch('test');
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -189,7 +189,7 @@ describe('testAsyncAction', () => {
         dispatch('test', { arg: 'arg' });
       });
 
-      it('throws DISPATCH_PAYLOAD_NOT_EXPECTED', done => {
+      it('throws DISPATCH_PAYLOAD_NOT_EXPECTED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.DISPATCH_PAYLOAD_NOT_EXPECTED);
@@ -201,7 +201,7 @@ describe('testAsyncAction', () => {
         dispatch('bad');
       });
 
-      it('throws INVALID_DISPATCH_CALLED', done => {
+      it('throws INVALID_DISPATCH_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_DISPATCH_CALLED);
@@ -221,7 +221,7 @@ describe('testAsyncAction', () => {
         dispatch('test', { arg: 'arg' });
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -233,7 +233,7 @@ describe('testAsyncAction', () => {
         dispatch('test', { arg: 'bad' });
       });
 
-      it('throws INVALID_DISPATCH_PAYLOAD', done => {
+      it('throws INVALID_DISPATCH_PAYLOAD', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_DISPATCH_PAYLOAD);
@@ -245,7 +245,7 @@ describe('testAsyncAction', () => {
         dispatch('bad', { arg: 'arg' });
       });
 
-      it('throws INVALID_DISPATCH_CALLED', done => {
+      it('throws INVALID_DISPATCH_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_DISPATCH_CALLED);
@@ -269,7 +269,7 @@ describe('testAsyncAction', () => {
         dispatch('dispatch3', 3);
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -282,7 +282,7 @@ describe('testAsyncAction', () => {
         dispatch('dispatch4', { arg: 'arg' });
       });
 
-      it('throws INVALID_DISPATCH_CALLED', done => {
+      it('throws INVALID_DISPATCH_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_DISPATCH_CALLED);
@@ -306,7 +306,7 @@ describe('testAsyncAction', () => {
         dispatch('dispatch');
       });
 
-      it('does not throw', done => {
+      it('does not throw', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).not.toThrow();
@@ -319,7 +319,7 @@ describe('testAsyncAction', () => {
         dispatch('dispatch');
       });
 
-      it('throws INVALID_COMMIT_CALLED', done => {
+      it('throws INVALID_COMMIT_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_COMMIT_CALLED);
@@ -332,7 +332,7 @@ describe('testAsyncAction', () => {
         dispatch('bad');
       });
 
-      it('throws INVALID_DISPATCH_CALLED', done => {
+      it('throws INVALID_DISPATCH_CALLED', (done) => {
         expect(() => {
           testAsyncAction({ action, expected, done });
         }).toThrowError(error.INVALID_DISPATCH_CALLED);
@@ -357,9 +357,9 @@ describe('testAsyncAction', () => {
         commit('commit', state.test);
       });
 
-      it('has access to the mocked state', done => {
+      it('has access to the mocked state', (done) => {
         expect(() => {
-          testAsyncAction({ action, mocks, expected, done })
+          testAsyncAction({ action, mocks, expected, done });
         }).not.toThrow();
       });
     });
@@ -382,9 +382,9 @@ describe('testAsyncAction', () => {
         commit('commit', getters.test());
       });
 
-      it('has access to the mocked getters', done => {
+      it('has access to the mocked getters', (done) => {
         expect(() => {
-          testAsyncAction({ action, mocks, expected, done })
+          testAsyncAction({ action, mocks, expected, done });
         }).not.toThrow();
       });
     });
@@ -403,9 +403,9 @@ describe('testAsyncAction', () => {
         commit('commit', payload.test);
       });
 
-      it('has access to the payload', done => {
+      it('has access to the payload', (done) => {
         expect(() => {
-          testAsyncAction({ action, payload, expected, done })
+          testAsyncAction({ action, payload, expected, done });
         }).not.toThrow();
       });
     });

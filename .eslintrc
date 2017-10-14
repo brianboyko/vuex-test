@@ -2,10 +2,17 @@
   "parser": "babel-eslint",
   "extends": "airbnb-base",
   "env": {
-    "mocha": true
+    "jest": true
   },
+  "plugins": [
+    "jest",
+  ],
   "rules": {
     "import/prefer-default-export": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/valid-expect": "error"
   }
 }
