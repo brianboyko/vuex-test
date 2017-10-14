@@ -60,7 +60,7 @@ redirectToDashboard() {
 
 ## Testing a Vuex Action with Asynchronous Code
 
-You can test an asynchronous Vuex action using `testAsyncAction`. It takes a single object providing the name of the action to be tested, test setup, and and mocks needed for the test:
+You can test an asynchronous Vuex action using `testAsyncAction`. It takes a single object providing the name of the action to be tested, test setup, and mocks needed for the test:
 
 ```javascript
 {
