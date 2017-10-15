@@ -2,6 +2,13 @@
   "name": "vuex-test",
   "version": "0.2.3",
   "description": "Vuex Testing Tools",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vuex",
+    "testing",
+    "tdd"
+  ],
   "main": "./dist/index.js",
   "homepage": "https://github.com/mcmillion/vuex-test",
   "bugs": {
