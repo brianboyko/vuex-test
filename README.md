@@ -2,7 +2,7 @@
 
 `vuex-test` is a small library of helpers intended to promote better design patterns and easier testing of Vuex actions.
 
-> `vuex-test` is under heavy active development. Please add any bugs, requests, or other feedback to the [issue tracker](https://github.com/mcmillion/vuex-test/issues).
+> `vuex-test` is under heavy active development and is currently *very* experimental. Please add any bugs, requests, or other feedback to the [issue tracker](https://github.com/mcmillion/vuex-test/issues).
 
 ## Installation
 
