@@ -3,13 +3,6 @@ import { asyncAction } from './support';
 import * as error from '../src/error';
 
 describe('testAsyncAction', () => {
-  describe('when action is not provided', () => {
-    it('throws NO_ACTION', () => {
-      expect(() => {
-        testAsyncAction();
-      }).toThrowError(error.NO_ACTION);
-    });
-  });
   describe('when done is not provided', () => {
     const expected = {
       commits: [
@@ -24,6 +17,14 @@ describe('testAsyncAction', () => {
       expect(() => {
         testAsyncAction({ action, expected });
       }).toThrowError(error.NO_DONE_CALLBACK);
+    });
+  });
+
+  describe('when action is not provided', () => {
+    it('throws NO_ACTION', (done) => {
+      expect(() => {
+        testAsyncAction({ done });
+      }).toThrowError(error.NO_ACTION);
     });
   });
 

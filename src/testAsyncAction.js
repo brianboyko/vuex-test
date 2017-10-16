@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash';
-import VuexTestError, * as error from './error';
+import * as error from './error';
 
 export function testAsyncAction(options = {}) {
   const { action, payload, mocks = {}, expected = {}, done } = options;
@@ -9,27 +9,32 @@ export function testAsyncAction(options = {}) {
   let commitCount = 0;
   let dispatchCount = 0;
 
-  if (!action) {
-    throw new VuexTestError(done, error.NO_ACTION);
-  }
   if (!done) {
-    throw new VuexTestError(done, error.NO_DONE_CALLBACK);
+    throw new Error(error.NO_DONE_CALLBACK);
+  }
+  if (!action) {
+    done();
+    throw new Error(error.NO_ACTION);
   }
   if (totalExpectedCount === 0) {
-    throw new VuexTestError(done, error.NO_EXPECTATIONS);
+    done();
+    throw new Error(error.NO_EXPECTATIONS);
   }
 
   const commit = (calledType, calledPayload) => {
     const { type: expectedType, payload: expectedPayload } = commits[commitCount];
 
     if (calledType !== expectedType) {
-      throw new VuexTestError(done, error.INVALID_COMMIT_CALLED);
+      done();
+      throw new Error(error.INVALID_COMMIT_CALLED);
     }
     if (!expectedPayload && calledPayload) {
-      throw new VuexTestError(done, error.COMMIT_PAYLOAD_NOT_EXPECTED);
+      done();
+      throw new Error(error.COMMIT_PAYLOAD_NOT_EXPECTED);
     }
     if (expectedPayload && !isEqual(calledPayload, expectedPayload)) {
-      throw new VuexTestError(done, error.INVALID_COMMIT_PAYLOAD);
+      done();
+      throw new Error(error.INVALID_COMMIT_PAYLOAD);
     }
 
     commitCount += 1;
@@ -43,13 +48,16 @@ export function testAsyncAction(options = {}) {
     const { type: expectedType, payload: expectedPayload } = dispatches[dispatchCount];
 
     if (calledType !== expectedType) {
-      throw new VuexTestError(done, error.INVALID_DISPATCH_CALLED);
+      done();
+      throw new Error(error.INVALID_DISPATCH_CALLED);
     }
     if (!expectedPayload && calledPayload) {
-      throw new VuexTestError(done, error.DISPATCH_PAYLOAD_NOT_EXPECTED);
+      done();
+      throw new Error(error.DISPATCH_PAYLOAD_NOT_EXPECTED);
     }
     if (expectedPayload && !isEqual(calledPayload, expectedPayload)) {
-      throw new VuexTestError(done, error.INVALID_DISPATCH_PAYLOAD);
+      done();
+      throw new Error(error.INVALID_DISPATCH_PAYLOAD);
     }
 
     dispatchCount += 1;

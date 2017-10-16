@@ -1,10 +1,3 @@
-export default class VuexTestError extends Error {
-  constructor(done, ...args) {
-    super(...args);
-    if (done) done();
-  }
-}
-
 export const NO_ACTION = 'No action provided.';
 export const NO_EXPECTATIONS = 'No expected commits or dispatches provided.';
 export const NO_DONE_CALLBACK = 'No done callback provided.';
